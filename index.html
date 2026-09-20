@@ -131,7 +131,6 @@
   .cal-cell.st-open { background:var(--cal-fill); color:var(--cal-text); font-weight:800; }
   .cal-cell.st-full { background:transparent; color:var(--text-dim); }
   .cal-cell.st-off { background:transparent; color:var(--text-dim); border:1px solid var(--line); }
-  .cal-cell.is-today { background:var(--white); color:var(--cal-text); box-shadow:0 0 0 2px var(--cal-text) inset; }
   .cal-note { text-align:center; margin-top:22px; padding:12px 16px; background:var(--pink-soft); border-radius:12px; font-size:12px; font-weight:700; color:var(--pink-deep); line-height:1.8; }
 
   /* ---- 공지사항 ---- */
@@ -216,15 +215,11 @@
   .pf-grid.pf-grid--wide .pf-item { width:100%; }
   @media (min-width:700px) { .pf-grid.pf-grid--wide .pf-item { width:calc(50% - 7px); } }
   .pf-item {
-    border-radius:4px; overflow:hidden; border:1px solid var(--line); cursor:zoom-in; background:var(--white);
+    border-radius:4px; overflow:hidden; border:1px solid var(--line); background:var(--white);
   }
   .pf-item img { width:100%; height:auto; display:block; }
   .pf-empty { text-align:center; padding:60px 16px; color:var(--text-dim); font-size:13px; border:1px dashed var(--line); border-radius:16px; width:100%; max-width:520px; }
 
-  .pf-lightbox { position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; background:rgba(15,26,46,0.85); padding:24px; }
-  .pf-lightbox.show { display:flex; }
-  .pf-lightbox img { max-width:100%; max-height:90vh; border-radius:0; }
-  .pf-lightbox-close { position:absolute; top:18px; right:22px; width:38px; height:38px; border-radius:10px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.12); color:#fff; font-size:20px; cursor:pointer; }
 
   footer { text-align:center; padding:36px 16px; color:var(--text-dim); font-size:11px; line-height:1.9; }
 
@@ -485,11 +480,6 @@
   © CANA. 환불은 아트머그 환불규정에 따릅니다.
 </footer>
 
-<div class="pf-lightbox" id="pfLightbox">
-  <button class="pf-lightbox-close" id="pfLightboxClose">✕</button>
-  <img id="pfLightboxImg" src="" alt="">
-</div>
-
 <script>
 (function(){
 
@@ -663,26 +653,10 @@
       img.src = src;
       img.loading = 'lazy';
       img.alt = cat.label + ' ' + num;
-      img.addEventListener('click', function(e){
-        openLightbox(e.target.src);
-      });
       item.appendChild(img);
       pfGrid.appendChild(item);
     });
   }
-
-  var lightbox = document.getElementById('pfLightbox');
-  var lightboxImg = document.getElementById('pfLightboxImg');
-  function openLightbox(src){
-    lightboxImg.src = src;
-    lightbox.classList.add('show');
-  }
-  document.getElementById('pfLightboxClose').addEventListener('click', function(){
-    lightbox.classList.remove('show');
-  });
-  lightbox.addEventListener('click', function(e){
-    if(e.target === lightbox) lightbox.classList.remove('show');
-  });
 
   renderTabs();
   renderGrid();
@@ -695,7 +669,9 @@
    *   status : open(예약가능) / full(예약마감) / off(휴무)
    * 시트에 적힌 날짜만 override 되고, 나머지 날짜는 자동으로 평일=예약가능, 주말=휴무, 지난 날짜=예약마감으로 표시됩니다.
    */
-  var SHEET_CSV_URL = '';
+  var SHEET_ID = '1IyimTWWf6qKENfH1c0aX1KYfSQRW3TxjDlGoBM47avk';
+  var SHEET_GID = '175282956';
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv&gid=' + SHEET_GID;
   var sheetOverrides = {};
 
   function parseCSV(text){
@@ -762,9 +738,8 @@
     for(var d=1; d<=daysInMonth; d++){
       (function(day){
         var status = getStatus(current.year, current.month, day);
-        var isToday = today.getFullYear()===current.year && (today.getMonth()+1)===current.month && today.getDate()===day;
         var cell = document.createElement('div');
-        cell.className = 'cal-cell st-' + status + (isToday ? ' is-today' : '');
+        cell.className = 'cal-cell st-' + status;
         var num = document.createElement('div');
         num.textContent = day;
         cell.appendChild(num);
