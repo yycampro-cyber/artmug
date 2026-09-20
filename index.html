@@ -763,8 +763,7 @@
     var trailing = (7 - (totalCells % 7)) % 7;
     for(var n=1; n<=trailing; n++){
       var nd = document.createElement('div');
-      nd.className = 'cal-cell st-open';
-      nd.textContent = n;
+      nd.className = 'cal-cell blank';
       calGridEl.appendChild(nd);
     }
   }
