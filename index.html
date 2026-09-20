@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6e97d6">
+<title>카나 CANA - 포스터·PPT·인생네컷·배너 커미션</title>
+<style>
+  @font-face {
+    font-family: 'Jalnan2';
+    src: url('Jalnan2TTF.ttf') format('truetype'), url('Jalnan2.otf') format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
+  }
+  :root {
+    --pink: #6e97d6;
+    --pink-deep: #4f78bd;
+    --pink-soft: #e6edf9;
+    --pink-bg: #f0f4fb;
+    --plum: #24314a;
+    --text: #37404f;
+    --text-soft: #838da0;
+    --text-dim: #b3bccb;
+    --line: #e6eaf2;
+    --white: #fff;
+    --grey-fill: #eceff5;
+    --cal-fill: #b9cceb;
+    --cal-text: #1f3a63;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  button, input, textarea, select { font-family:inherit; }
+  html { scroll-behavior:smooth; }
+  html, body { overflow-x:hidden; width:100%; }
+  body {
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:var(--white)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 12.2c-0.6-1.1-2.2-1.2-2.9-0.3-0.6 0.8-0.5 1.8 0.2 2.4l2.7 2.6 2.7-2.6c0.7-0.6 0.8-1.6 0.2-2.4-0.7-0.9-2.3-0.8-2.9 0.3z' fill='%23e2eaf7'/%3E%3C/svg%3E") repeat;
+    background-size:30px 30px;
+    color:var(--text); line-height:1.6; font-size:14px;
+  }
+  .jalnan { font-family:'Jalnan2','Malgun Gothic',sans-serif; }
+  img { display:block; max-width:100%; height:auto; }
+  a { color:inherit; text-decoration:none; }
+  ul { list-style:none; }
+
+  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+
+  /* ---- 섹션 공통 ---- */
+  .section { padding:46px 20px; }
+  .section-title-row { text-align:center; margin-bottom:8px; }
+  .section-title { font-size:26px; font-weight:900; color:var(--plum); }
+  .section-underline { width:36px; height:4px; background:var(--pink); border-radius:2px; margin:10px auto 0; }
+  .section-lead { text-align:center; font-size:13px; color:var(--text-soft); margin-top:14px; line-height:1.8; }
+
+  /* ---- 인사말 히어로 카드 (센터형) ---- */
+  .hero-card {
+    max-width:820px; margin:0 auto; background:var(--pink-soft);
+    border-radius:32px; padding:52px 40px; text-align:center;
+  }
+  .hero-card--centered { display:flex; flex-direction:column; align-items:center; }
+  .hero-face {
+    width:180px; height:180px; border-radius:36px;
+    overflow:hidden; box-shadow:0 16px 36px rgba(110,151,214,0.35);
+    background:linear-gradient(135deg,var(--pink),var(--pink-deep));
+  }
+  .hero-face img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+  .hero-body { width:100%; }
+  .hero-name { margin-top:26px; font-size:32px; font-weight:900; color:var(--pink-deep); }
+  .hero-name small { font-size:19px; color:var(--plum); font-weight:800; margin-left:6px; }
+  .hero-tags { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:18px; }
+  .hero-tag {
+    font-size:13px; font-weight:800; color:var(--pink-deep); background:#fff;
+    padding:8px 16px; border-radius:999px;
+  }
+  .hero-desc { margin-top:20px; font-size:15px; color:var(--text-soft); line-height:1.9; }
+  .hero-badge {
+    display:inline-block; margin-top:20px; padding:9px 18px; border-radius:999px;
+    background:#fff; color:var(--pink-deep); font-size:13px; font-weight:800;
+  }
+  .hero-btns { display:flex; gap:12px; margin-top:22px; flex-wrap:wrap; justify-content:center; }
+  .hero-btn {
+    padding:14px 24px; border-radius:999px; font-size:14px; font-weight:800; cursor:pointer;
+    border:1px solid var(--pink); background:#fff; color:var(--pink-deep);
+  }
+  .hero-btn.primary { background:var(--pink); color:#fff; border-color:var(--pink); }
+
+  /* ---- EVENT ---- */
+  .event-box {
+    max-width:640px; margin:26px auto 0; border-radius:20px; padding:26px 20px; text-align:center; color:#fff;
+    background:linear-gradient(120deg,var(--pink) 0%,#a9c2ea 100%);
+    box-shadow:0 16px 34px rgba(110,151,214,0.32);
+  }
+  .event-box .ev-period { font-size:12px; font-weight:700; opacity:0.92; }
+  .event-box .ev-title { font-size:19px; font-weight:900; margin:8px 0; }
+  .event-box .ev-desc { font-size:13px; font-weight:700; }
+
+  /* ---- 핑크 배경 스캘럽 섹션 ---- */
+  .pink-region { position:relative; background:var(--pink-bg); }
+  .pink-region::before, .pink-region::after {
+    content:''; display:block; height:16px;
+    background-image:radial-gradient(circle at 12px 0, transparent 12px, var(--pink-bg) 13px);
+    background-size:24px 20px; background-repeat:repeat-x;
+  }
+  .pink-region::before { background-color:var(--white); }
+  .pink-region::after {
+    transform:rotate(180deg); background-color:var(--white);
+  }
+  .pink-region .section-title, .pink-region .section-lead { color:var(--plum); }
+
+  /* ---- 캘린더 (pill 스타일) ---- */
+  .cal-card { max-width:900px; margin:28px auto 0; background:var(--white); border:1px solid #ece7fa; border-radius:26px; padding:30px 34px; box-shadow:0 18px 40px rgba(120,105,200,0.1); }
+  .cal-top { display:flex; align-items:center; justify-content:center; position:relative; margin-bottom:8px; }
+  .cal-top-title { font-size:17px; font-weight:900; color:var(--cal-text); min-width:60px; text-align:center; }
+  .cal-nav-group { display:flex; align-items:center; gap:16px; }
+  .cal-nav { width:30px; height:30px; border-radius:50%; border:1px solid var(--line); background:var(--white); color:var(--text-dim); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .cal-nav:hover { border-color:var(--pink); color:var(--pink); background:var(--pink-soft); }
+  .cal-legend { position:absolute; right:0; top:2px; display:flex; gap:14px; flex-wrap:wrap; }
+  .cal-legend-pill { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--text-soft); }
+  .cal-legend-pill::before { content:''; width:10px; height:10px; border-radius:50%; background:var(--cal-fill); display:inline-block; }
+  .cal-legend-pill.full::before { background:var(--grey-fill); }
+  .cal-legend-pill.off::before { background:var(--white); border:1px solid var(--text-dim); box-sizing:border-box; }
+  .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:10px 6px; margin-top:28px; }
+  .cal-dow { text-align:center; font-size:12px; font-weight:800; color:var(--text-dim); padding-bottom:8px; }
+  .cal-cell {
+    height:46px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700; color:var(--text-dim); background:transparent; border:none;
+  }
+  .cal-cell .cal-tag { display:none; }
+  .cal-cell.blank { visibility:hidden; }
+  .cal-cell.st-open { background:var(--cal-fill); color:var(--cal-text); font-weight:800; }
+  .cal-cell.st-full { background:transparent; color:var(--text-dim); }
+  .cal-cell.st-off { background:transparent; color:var(--text-dim); border:1px solid var(--line); }
+  .cal-cell.is-today { background:var(--white); color:var(--cal-text); box-shadow:0 0 0 2px var(--cal-text) inset; }
+  .cal-note { text-align:center; margin-top:22px; font-size:11.5px; color:var(--text-dim); line-height:1.8; }
+
+  /* ---- 공지사항 ---- */
+  .notice-wrap { max-width:900px; margin:24px auto 0; }
+  .notice-first {
+    background:var(--white); border-radius:22px; padding:30px 28px; box-shadow:0 10px 26px rgba(110,151,214,0.1);
+    margin-bottom:26px;
+  }
+  .notice-first .n-num { font-size:34px; font-weight:900; color:var(--pink); margin-bottom:14px; }
+  .notice-first .n-title { font-size:17px; font-weight:900; color:var(--plum); display:flex; align-items:center; gap:8px; }
+  .notice-first .n-req { font-size:10px; font-weight:800; color:var(--pink-deep); background:var(--pink-soft); padding:3px 9px; border-radius:999px; }
+  .notice-first .n-desc { margin-top:10px; font-size:12.5px; color:var(--text-soft); line-height:1.8; }
+  .notice-grid { display:grid; grid-template-columns:1fr; gap:0; }
+  @media (min-width:760px) { .notice-grid { grid-template-columns:1fr 1fr; column-gap:40px; } }
+  .notice-item { padding:18px 0; border-top:1px solid var(--line); display:flex; gap:14px; }
+  .notice-item .n-num { flex:0 0 30px; font-size:13px; font-weight:900; color:var(--pink); }
+  .notice-item .n-body .n-title { font-size:13.5px; font-weight:800; color:var(--plum); }
+  .notice-item .n-body .n-desc { margin-top:6px; font-size:12px; color:var(--text-soft); line-height:1.75; white-space:pre-line; }
+
+  /* ---- 패키지 ---- */
+  .pkg-grid { display:grid; grid-template-columns:1fr; gap:20px; max-width:1000px; margin:26px auto 0; }
+  @media (min-width:820px) { .pkg-grid { grid-template-columns:repeat(2,1fr); } }
+  .pkg-card { position:relative; background:var(--white); border:1px solid var(--line); border-radius:22px; padding:26px 24px; box-shadow:0 10px 24px rgba(110,151,214,0.08); }
+  .pkg-card.is-featured { border-color:var(--pink); }
+  .pkg-ribbon {
+    position:absolute; top:-12px; right:22px; background:var(--pink); color:#fff;
+    font-size:11px; font-weight:800; padding:5px 12px; border-radius:999px;
+  }
+  .pkg-name { font-size:16px; font-weight:900; color:var(--plum); }
+  .pkg-price-row { margin-top:12px; display:flex; align-items:baseline; gap:8px; }
+  .pkg-price-row .old { font-size:13px; color:var(--text-dim); text-decoration:line-through; }
+  .pkg-price-row .now { font-size:30px; font-weight:900; color:var(--pink-deep); }
+  .pkg-tagline { margin-top:4px; font-size:12.5px; color:var(--text-soft); font-weight:700; }
+  .pkg-days-note { margin-top:12px; padding:12px 14px; background:var(--pink-bg); border-radius:12px; font-size:11.5px; color:var(--text-soft); line-height:1.7; }
+  .pkg-included-label { margin-top:18px; font-size:11px; font-weight:800; color:var(--text-dim); }
+  .pkg-list { margin-top:10px; display:flex; flex-direction:column; gap:9px; }
+  .pkg-list li { list-style:none; font-size:12.5px; color:var(--text); padding-left:22px; position:relative; line-height:1.6; }
+  .pkg-list li::before { content:'✓'; position:absolute; left:0; color:var(--pink); font-weight:900; }
+  .pkg-note { text-align:center; margin-top:20px; font-size:11px; color:var(--text-dim); line-height:1.8; max-width:760px; margin-left:auto; margin-right:auto; }
+
+  /* ---- 신청양식 ---- */
+  .order-form { max-width:760px; margin:26px auto 0; }
+  .order-card { background:var(--white); border-radius:24px; padding:30px 26px; box-shadow:0 12px 30px rgba(110,151,214,0.1); display:flex; flex-direction:column; gap:26px; }
+  .order-sec-title { font-size:16px; font-weight:900; color:var(--plum); display:flex; align-items:center; gap:8px; }
+  .order-sec-title .num { color:var(--pink); }
+  .order-sec-body { margin-top:14px; display:flex; flex-direction:column; gap:16px; }
+  .order-field { display:flex; flex-direction:column; gap:8px; }
+  .order-label { font-size:12.5px; font-weight:800; color:var(--text); display:flex; align-items:center; gap:6px; }
+  .req-pill { font-size:9.5px; font-weight:800; color:var(--pink-deep); background:var(--pink-soft); padding:2px 8px; border-radius:999px; }
+  .order-input, .order-textarea { width:100%; padding:13px 16px; border:1px solid var(--line); border-radius:14px; background:#fafafa; color:var(--text); font-family:inherit; font-size:12.5px; line-height:1.6; }
+  .order-textarea { resize:vertical; min-height:88px; }
+  .order-input::placeholder, .order-textarea::placeholder { color:#c7c1c9; }
+  .order-input:focus, .order-textarea:focus { outline:none; border-color:var(--pink); background:#fff; }
+  .order-checks { display:flex; flex-wrap:wrap; gap:8px; }
+  .order-chip { display:inline-flex; align-items:center; gap:6px; padding:9px 14px; border:1px solid var(--line); border-radius:999px; background:#fafafa; font-size:12px; color:var(--text-soft); cursor:pointer; }
+  .order-chip input { accent-color:var(--pink); }
+  .order-actions { display:flex; flex-wrap:wrap; gap:8px; }
+  .order-action-btn { flex:1; min-width:120px; padding:14px 14px; border-radius:14px; border:1px solid var(--line); background:#fafafa; color:var(--text-soft); font-size:13px; font-weight:800; cursor:pointer; font-family:inherit; }
+  .order-action-btn--primary { background:var(--pink); border-color:var(--pink); color:#fff; }
+  .order-action-btn:hover { border-color:var(--pink); color:var(--pink-deep); }
+  .order-action-btn--primary:hover { background:var(--pink-deep); color:#fff; }
+  .order-preview { width:100%; min-height:200px; margin-top:2px; padding:14px 16px; border:1px solid var(--line); border-radius:14px; background:#fafafa; color:var(--text-soft); font-family:inherit; font-size:11.5px; line-height:1.7; resize:vertical; }
+  .order-note { margin-top:14px; text-align:center; font-size:11.5px; color:var(--text-dim); line-height:1.8; }
+
+  /* ---- 포트폴리오 ---- */
+  .pf-tabrow { display:flex; align-items:center; gap:10px; max-width:1000px; margin:14px auto 0; }
+  .pf-tabrow:first-of-type { margin-top:26px; }
+  .pf-tabs { display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; flex:1; padding:4px 2px; }
+  .pf-tabs::-webkit-scrollbar{ display:none; }
+  .pf-arrow { flex:0 0 auto; width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--white); color:var(--text-soft); font-size:15px; cursor:pointer; outline:none; }
+  .pf-arrow:hover { border-color:var(--pink); color:var(--pink); }
+  .pf-arrow:focus-visible { outline:2px solid var(--pink); outline-offset:2px; }
+  .pf-tab {
+    flex:0 0 auto; white-space:nowrap; font-family:inherit; cursor:pointer;
+    padding:11px 18px; border-radius:999px; font-size:12.5px; font-weight:800;
+    border:1px solid var(--line); background:var(--white); color:var(--text-soft);
+    outline:none; box-sizing:border-box;
+  }
+  .pf-tab:hover { border-color:var(--pink); color:var(--pink-deep); }
+  .pf-tab.is-active { background:var(--pink); border-color:var(--pink); color:#fff; }
+  .pf-tab:focus-visible { outline:2px solid var(--pink); outline-offset:2px; }
+  .pf-grid { column-count:2; column-gap:14px; max-width:1200px; margin:20px auto 0; }
+  @media (min-width:700px) { .pf-grid { column-count:3; } }
+  @media (min-width:1000px) { .pf-grid { column-count:4; } }
+  .pf-grid.pf-grid--wide { column-count:1; max-width:1080px; }
+  @media (min-width:700px) { .pf-grid.pf-grid--wide { column-count:2; } }
+  .pf-item {
+    border-radius:4px; overflow:hidden; border:1px solid var(--line); cursor:zoom-in; background:var(--white);
+    break-inside:avoid; margin:0 0 16px;
+  }
+  .pf-item img { width:100%; height:auto; display:block; }
+  .pf-empty { break-inside:avoid; text-align:center; padding:60px 16px; color:var(--text-dim); font-size:13px; border:1px dashed var(--line); border-radius:16px; }
+
+  .pf-lightbox { position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; background:rgba(60,30,45,0.82); padding:24px; }
+  .pf-lightbox.show { display:flex; }
+  .pf-lightbox img { max-width:100%; max-height:90vh; border-radius:12px; }
+  .pf-lightbox-close { position:absolute; top:18px; right:22px; width:38px; height:38px; border-radius:10px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.12); color:#fff; font-size:20px; cursor:pointer; }
+
+  footer { text-align:center; padding:36px 16px; color:var(--text-dim); font-size:11px; line-height:1.9; }
+
+  /* nav */
+  .topnav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav-inner { max-width:1120px; margin:0 auto; padding:0 20px; height:56px; display:flex; align-items:center; gap:6px; }
+  .topnav-logo { font-size:16px; font-weight:900; color:var(--pink-deep); margin-right:auto; }
+  .topnav-link { font-size:12px; font-weight:800; color:var(--text-soft); padding:8px 12px; border-radius:999px; white-space:nowrap; }
+  .topnav-link:hover { color:var(--pink-deep); background:var(--pink-soft); }
+  .topnav-links { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .topnav-links::-webkit-scrollbar{ display:none; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-logo">CANA 카나</div>
+    <div class="topnav-links">
+      <a class="topnav-link" href="#greet">인사말</a>
+      <a class="topnav-link" href="#event">EVENT</a>
+      <a class="topnav-link" href="#portfolio">포트폴리오</a>
+      <a class="topnav-link" href="#schedule">작업일정</a>
+      <a class="topnav-link" href="#notice">공지사항</a>
+      <a class="topnav-link" href="#package">패키지</a>
+      <a class="topnav-link" href="#order">신청양식</a>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="greet" style="padding-top:60px">
+  <div class="hero-card hero-card--centered">
+    <div class="hero-face"><img src="images/카나-profile-square.jpg" alt="카나 프로필"></div>
+    <div class="hero-body">
+      <div class="hero-name jalnan">CANA <small>카나</small></div>
+      <div class="hero-tags">
+        <span class="hero-tag">#Virtual</span>
+        <span class="hero-tag">#All Design</span>
+        <span class="hero-tag">#Cute</span>
+        <span class="hero-tag">#포스터</span>
+        <span class="hero-tag">#PPT</span>
+      </div>
+      <p class="hero-desc">안녕하세요 카나CANA 입니다.<br>캐릭터의 개성과 채널분위기를 최대한 살릴 맞춤 디자인을 제작합니다. 메뉴에 없는 것도 편하게 문의 주시면 됩니다♡</p>
+      <span class="hero-badge">현재 신청 가능</span>
+      <div class="hero-btns">
+        <a class="hero-btn primary" href="#order">문의양식</a>
+        <a class="hero-btn" href="#schedule">작업일정</a>
+        <a class="hero-btn" href="#portfolio">포트폴리오</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="event">
+  <div class="section-title-row">
+    <div class="section-title">RE-OPEN 리뷰 이벤트</div>
+    <div class="section-underline"></div>
+  </div>
+  <div class="event-box">
+    <div class="ev-period">~ 10월 20일까지</div>
+    <div class="ev-title">리뷰 작성 시 혜택 선택 가능</div>
+    <div class="ev-desc">5,000원 할인 <b>OR</b> 시그풍 1개 제작</div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="section-title-row">
+    <div class="section-title">포트폴리오</div>
+    <div class="section-underline"></div>
+  </div>
+  <div class="pf-tabrow">
+    <button class="pf-arrow" id="pfArrowPrev1">‹</button>
+    <div class="pf-tabs" id="pfTabsG1"></div>
+    <button class="pf-arrow" id="pfArrowNext1">›</button>
+  </div>
+  <div class="pf-tabrow">
+    <button class="pf-arrow" id="pfArrowPrev2">‹</button>
+    <div class="pf-tabs" id="pfTabsG2"></div>
+    <button class="pf-arrow" id="pfArrowNext2">›</button>
+  </div>
+  <div class="pf-grid" id="pfGrid"></div>
+</section>
+
+<div class="pink-region">
+  <section class="section" id="schedule">
+    <div class="section-title-row">
+      <div class="section-title">작업일정</div>
+      <div class="section-underline"></div>
+    </div>
+    <p class="section-lead">휴무일에 작업이 진행되지않으며 문의 및 예약만 가능합니다♡<br>당일마감, 빠른마감도 휴무일 제외 문의 부탁드립니다♡</p>
+
+    <div class="cal-card">
+      <div class="cal-top">
+        <div class="cal-nav-group">
+          <button class="cal-nav" id="calPrev">‹</button>
+          <div class="cal-top-title" id="calMonth">9월</div>
+          <button class="cal-nav" id="calNext">›</button>
+        </div>
+        <div class="cal-legend">
+          <span class="cal-legend-pill">예약 가능</span>
+          <span class="cal-legend-pill full">예약 마감</span>
+          <span class="cal-legend-pill off">휴무</span>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <p class="cal-note">달력은 예약 현황에 따라 실시간으로 업데이트됩니다. 정확한 마감 일정은 문의를 통해 다시 한 번 확인해 주세요.</p>
+    </div>
+  </section>
+</div>
+
+<section class="section" id="notice">
+  <div class="section-title-row">
+    <div class="section-title">공지사항</div>
+    <div class="section-underline"></div>
+  </div>
+  <div class="notice-wrap">
+    <div class="notice-first">
+      <div class="n-num jalnan">01</div>
+      <div class="n-title">신청 전 공지사항을 꼭 확인해주세요. <span class="n-req">필독</span></div>
+      <div class="n-desc">신청 전 공지사항 미숙지로 인해 발생하는 문제에 대해서는 책임지지 않습니다.</div>
+    </div>
+    <div class="notice-grid" id="noticeList"></div>
+  </div>
+</section>
+
+<div class="pink-region">
+  <section class="section" id="package">
+    <div class="section-title-row">
+      <div class="section-title">패키지</div>
+      <div class="section-underline"></div>
+    </div>
+    <p class="section-lead">기존 패키지 구성 빼는 건 불가능하며, 변경 또는 추가는 가능합니다.<br>(금액에 맞는 변경은 가능하나 추가 시 추가 비용이 발생할 수 있습니다)</p>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-name">Basic 패키지</div>
+        <div class="pkg-price-row"><span class="old">285,000원</span><span class="now">23만원</span></div>
+        <div class="pkg-tagline">데뷔기본♥</div>
+        <div class="pkg-days-note">※ Basic 패키지 작업기간은 총 20일 이내 소요예정입니다.</div>
+        <div class="pkg-included-label">포함 구성</div>
+        <ul class="pkg-list">
+          <li>RT공개 포스터</li>
+          <li>[장수제한X][PNG전달] PPT</li>
+          <li>가로형 데뷔 썸네일</li>
+          <li>[컨텐츠,공고,모집등] 일반 홍보 포스터</li>
+          <li>[PSD파일포함] 스케쥴 가로</li>
+          <li>[PSD파일포함] 스케쥴 세로</li>
+          <li>[PSD파일포함] 다시보기틀</li>
+        </ul>
+      </div>
+      <div class="pkg-card is-featured">
+        <span class="pkg-ribbon">추천</span>
+        <div class="pkg-name">Standard 패키지</div>
+        <div class="pkg-price-row"><span class="old">395,000원</span><span class="now">30만원</span></div>
+        <div class="pkg-tagline">데뷔기본+업그레이드♥</div>
+        <div class="pkg-days-note">※ Standard 패키지 작업기간은 총 25일 이내 소요예정입니다.</div>
+        <div class="pkg-included-label">포함 구성</div>
+        <ul class="pkg-list">
+          <li>RT공개 포스터</li>
+          <li>[장수제한X][PNG전달] PPT</li>
+          <li>가로형 데뷔 썸네일</li>
+          <li>[컨텐츠,공고,모집등] 일반 홍보 포스터</li>
+          <li>[PSD파일포함] 스케쥴 가로</li>
+          <li>[PSD파일포함] 스케쥴 세로</li>
+          <li>[PSD파일포함] 다시보기틀</li>
+          <li>SOOP 상단 배너 OR 치지직 배너</li>
+          <li>체키틀</li>
+          <li>[대형][PSD파일포함] 인생네컷</li>
+          <li>[소형][PSD파일포함] 인생네컷</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pkg-note">기존 패키지 구성을 빼는 것은 불가능하며 변경 또는 추가는 가능합니다. (금액에 맞는 변경은 가능하나 추가 시 추가 비용이 발생할 수 있습니다)</p>
+  </section>
+</div>
+
+<section class="section" id="order">
+  <div class="section-title-row">
+    <div class="section-title">신청 양식</div>
+    <div class="section-underline"></div>
+  </div>
+  <p class="section-lead">작성한 내용을 복사해 문의 채널에 붙여넣어 주세요.</p>
+
+  <div class="order-form">
+    <div class="order-card">
+
+      <div>
+        <div class="order-sec-title"><span class="num">01</span> 신청 정보</div>
+        <div class="order-sec-body">
+          <div class="order-field">
+            <label class="order-label">활동명 / 방송하는 주소 <span class="req-pill">필수</span></label>
+            <input class="order-input" id="fName" placeholder="예) 카나 / https://artmug.kr/index.php?channel=view&uid=45115">
+          </div>
+          <div class="order-field">
+            <label class="order-label">신청 항목 <span class="req-pill">필수</span></label>
+            <div class="order-checks" id="fItems"></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="order-sec-title"><span class="num">02</span> 요청사항</div>
+        <div class="order-sec-body">
+          <div class="order-field">
+            <label class="order-label">디자인 및 컨셉 <span class="req-pill">필수</span></label>
+            <input class="order-input" id="fConcept" placeholder="예) 귀여움, 고양이, 시크 등">
+          </div>
+          <div class="order-field">
+            <label class="order-label">색감 (색상 코드가 있으면 좋아요) <span class="req-pill">필수</span></label>
+            <input class="order-input" id="fColor" placeholder="예) 민트 + 하늘 + 화이트">
+          </div>
+          <div class="order-field">
+            <label class="order-label">내용입력 <span class="req-pill">필수</span></label>
+            <textarea class="order-textarea" id="fContent" placeholder="예) 들어가는 문구, RT포스터 숫자 및 배치할 정보 등 자세히 적어주세요."></textarea>
+          </div>
+          <div class="order-field">
+            <label class="order-label">그 외 추가사항</label>
+            <textarea class="order-textarea" id="fEtc" placeholder="예) 원하는 분위기 및 원치않는 분위기, 참고사항, 희망 마감일"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="order-sec-title"><span class="num">03</span> 레퍼런스</div>
+        <div class="order-sec-body">
+          <div class="order-field">
+            <label class="order-label">들어갔으면 하는 이미지 및 레퍼런스</label>
+            <textarea class="order-textarea" id="fRef" placeholder="꼭 들어가야 하는 이미지가 있다면 파일명이나 설명을 적어주시고, 실제 파일은 문의 채널에 함께 첨부해 주세요."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="order-sec-title"><span class="num">04</span> 필독사항 숙지 여부</div>
+        <div class="order-sec-body">
+          <label class="order-chip"><input type="checkbox" id="fAgree"> 공지사항을 모두 확인했으며 동의합니다 (Y)</label>
+        </div>
+      </div>
+
+      <div>
+        <div class="order-sec-title">추가옵션</div>
+        <div class="order-sec-body">
+          <div class="order-checks">
+            <label class="order-chip"><input type="checkbox" id="fOptToday"> 당일마감</label>
+            <label class="order-chip"><input type="checkbox" id="fOptFast"> 빠른마감</label>
+            <label class="order-chip"><input type="checkbox" id="fOptPrivate"> 포트폴리오 비공개</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-actions">
+        <button class="order-action-btn order-action-btn--primary" id="btnBuild">신청서 만들기</button>
+      </div>
+      <textarea class="order-preview" id="fPreview" placeholder="위 항목을 채우고 [신청서 만들기]를 누르면 여기에 신청서가 생성됩니다." readonly></textarea>
+      <p class="order-note">※ 들어가는 모든 이미지는 아트머그 "파일첨부"로 부탁드립니다.<br>(개별 또는 압축파일로 첨부 부탁드려요. 원본 해상도를 유지하기 위함입니다)</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  본 페이지의 모든 작업물은 사전 동의 없이 2차 가공, 제3자 양도·판매·제공이 불가합니다.<br>
+  © CANA. 환불은 아트머그 환불규정에 따릅니다.
+</footer>
+
+<div class="pf-lightbox" id="pfLightbox">
+  <button class="pf-lightbox-close" id="pfLightboxClose">✕</button>
+  <img id="pfLightboxImg" src="" alt="">
+</div>
+
+<script>
+(function(){
+
+  /* ---------- 포트폴리오 ---------- */
+  var PF_CATS = [
+    { key:'rt', label:'RT 포스터', folder:'images/portfolio/RT', files:['01','02','03','04','05','06','08','09'], group:1 },
+    { key:'ppt', label:'PPT', folder:'images/portfolio/PPT', count:5, wide:true, group:1 },
+    { key:'promo', label:'일반 홍보 포스터', folder:'images/portfolio/홍보포스터', count:9, group:1 },
+    { key:'life4_big', label:'인생네컷 대형', folder:'images/portfolio/인생네컷대형', count:12, group:1 },
+    { key:'life4_small', label:'인생네컷 소형', folder:'images/portfolio/인생네컷소형', count:6, group:1 },
+    { key:'cheki', label:'체키틀', folder:null, group:1 },
+    { key:'debut_thumb', label:'데뷔 썸네일', folder:null, group:1 },
+    { key:'soop_profile', label:'SOOP 프로필', folder:null, group:2 },
+    { key:'soop_top', label:'SOOP 상단', folder:null, group:2 },
+    { key:'soop_bottom', label:'SOOP 하단', folder:null, group:2 },
+    { key:'chzzk_bottom', label:'치지직 하단', folder:null, group:2 },
+    { key:'replay', label:'다시보기틀', folder:null, group:2 },
+    { key:'sched_h', label:'스케쥴표 가로', folder:null, group:2 },
+    { key:'sched_v', label:'스케쥴표 세로', folder:null, group:2 }
+  ];
+
+  var pfTabsG1 = document.getElementById('pfTabsG1');
+  var pfTabsG2 = document.getElementById('pfTabsG2');
+  var pfGrid = document.getElementById('pfGrid');
+  var activeKey = PF_CATS[0].key;
+
+  function renderTabs(){
+    pfTabsG1.innerHTML = '';
+    pfTabsG2.innerHTML = '';
+    PF_CATS.forEach(function(cat){
+      var b = document.createElement('button');
+      b.className = 'pf-tab' + (cat.key === activeKey ? ' is-active' : '');
+      b.textContent = cat.label;
+      b.addEventListener('click', function(){
+        activeKey = cat.key;
+        renderTabs();
+        renderGrid();
+        b.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+      });
+      (cat.group === 2 ? pfTabsG2 : pfTabsG1).appendChild(b);
+    });
+  }
+
+  function renderGrid(){
+    var cat = PF_CATS.filter(function(c){ return c.key === activeKey; })[0];
+    pfGrid.innerHTML = '';
+    pfGrid.classList.toggle('pf-grid--wide', !!cat.wide);
+    var fileList = cat.files || (cat.count ? Array.from({length:cat.count}, function(_,i){ var n=i+1; return n<10?'0'+n:''+n; }) : null);
+    if(!cat.folder || !fileList){
+      var empty = document.createElement('div');
+      empty.className = 'pf-empty';
+      empty.textContent = '해당 카테고리 포트폴리오는 준비 중입니다. 문의 시 편하게 물어봐 주세요!';
+      pfGrid.appendChild(empty);
+      return;
+    }
+    fileList.forEach(function(num){
+      var src = cat.folder + '/' + num + '.png';
+      var item = document.createElement('div');
+      item.className = 'pf-item';
+      var img = document.createElement('img');
+      img.src = src;
+      img.loading = 'lazy';
+      img.alt = cat.label + ' ' + num;
+      img.addEventListener('click', function(e){
+        openLightbox(e.target.src);
+      });
+      item.appendChild(img);
+      pfGrid.appendChild(item);
+    });
+  }
+
+  document.getElementById('pfArrowPrev1').addEventListener('click', function(){
+    pfTabsG1.scrollBy({ left:-200, behavior:'smooth' });
+  });
+  document.getElementById('pfArrowNext1').addEventListener('click', function(){
+    pfTabsG1.scrollBy({ left:200, behavior:'smooth' });
+  });
+  document.getElementById('pfArrowPrev2').addEventListener('click', function(){
+    pfTabsG2.scrollBy({ left:-200, behavior:'smooth' });
+  });
+  document.getElementById('pfArrowNext2').addEventListener('click', function(){
+    pfTabsG2.scrollBy({ left:200, behavior:'smooth' });
+  });
+
+  var lightbox = document.getElementById('pfLightbox');
+  var lightboxImg = document.getElementById('pfLightboxImg');
+  function openLightbox(src){
+    lightboxImg.src = src;
+    lightbox.classList.add('show');
+  }
+  document.getElementById('pfLightboxClose').addEventListener('click', function(){
+    lightbox.classList.remove('show');
+  });
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) lightbox.classList.remove('show');
+  });
+
+  renderTabs();
+  renderGrid();
+
+  /* ---------- 작업일정 캘린더 (구글 스프레드시트 연동) ---------- */
+  /*
+   * 구글 시트를 "파일 > 웹에 게시(CSV)"로 게시한 뒤, 그 CSV 링크를 아래 SHEET_CSV_URL에 넣어주세요.
+   * 시트 형식 (헤더 포함 1행): date, status
+   *   date   : YYYY-MM-DD (예: 2026-09-21)
+   *   status : open(예약가능) / full(예약마감) / off(휴무)
+   * 시트에 적힌 날짜만 override 되고, 나머지 날짜는 자동으로 평일=예약가능, 주말=휴무, 지난 날짜=예약마감으로 표시됩니다.
+   */
+  var SHEET_CSV_URL = '';
+  var sheetOverrides = {};
+
+  function parseCSV(text){
+    var lines = text.trim().split(/\r?\n/);
+    lines.shift(); // header
+    lines.forEach(function(line){
+      var cols = line.split(',');
+      var date = (cols[0] || '').trim();
+      var status = (cols[1] || '').trim().toLowerCase();
+      if(date && ['open','full','off'].indexOf(status) !== -1){
+        sheetOverrides[date] = status;
+      }
+    });
+  }
+
+  function loadSheet(){
+    if(!SHEET_CSV_URL) return Promise.resolve();
+    return fetch(SHEET_CSV_URL)
+      .then(function(res){ return res.text(); })
+      .then(function(text){ parseCSV(text); })
+      .catch(function(err){ console.warn('구글 시트 불러오기 실패:', err); });
+  }
+
+  var today = new Date();
+  var current = { year: 2026, month: 9 };
+
+  function dateStr(y,m,d){
+    return y + '-' + (m<10?'0'+m:m) + '-' + (d<10?'0'+d:d);
+  }
+  function getStatus(y,m,d){
+    var key = dateStr(y,m,d);
+    if(sheetOverrides[key]) return sheetOverrides[key];
+    var target = new Date(y, m-1, d);
+    var todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    if(target < todayMid) return 'full';
+    var dow = target.getDay();
+    return (dow === 0 || dow === 6) ? 'off' : 'open';
+  }
+  var STATUS_LABEL = { open:'', full:'마감', off:'휴무' };
+
+  var calMonthEl = document.getElementById('calMonth');
+  var calGridEl = document.getElementById('calGrid');
+  var DOW = ['일','월','화','수','목','금','토'];
+
+  function renderCalendar(){
+    calMonthEl.textContent = current.month + '월';
+    calGridEl.innerHTML = '';
+    DOW.forEach(function(d,i){
+      var el = document.createElement('div');
+      el.className = 'cal-dow' + (i===0 ? ' sun' : '');
+      el.textContent = d;
+      calGridEl.appendChild(el);
+    });
+    var first = new Date(current.year, current.month-1, 1);
+    var startDow = first.getDay();
+    var daysInMonth = new Date(current.year, current.month, 0).getDate();
+    var prevMonthDays = new Date(current.year, current.month-1, 0).getDate();
+    for(var i=startDow; i>0; i--){
+      var pd = document.createElement('div');
+      pd.className = 'cal-cell st-full';
+      pd.textContent = prevMonthDays - i + 1;
+      calGridEl.appendChild(pd);
+    }
+    for(var d=1; d<=daysInMonth; d++){
+      (function(day){
+        var status = getStatus(current.year, current.month, day);
+        var isToday = today.getFullYear()===current.year && (today.getMonth()+1)===current.month && today.getDate()===day;
+        var cell = document.createElement('div');
+        cell.className = 'cal-cell st-' + status + (isToday ? ' is-today' : '');
+        var num = document.createElement('div');
+        num.textContent = day;
+        cell.appendChild(num);
+        if(STATUS_LABEL[status]){
+          var tag = document.createElement('div');
+          tag.className = 'cal-tag';
+          tag.textContent = STATUS_LABEL[status];
+          cell.appendChild(tag);
+        }
+        calGridEl.appendChild(cell);
+      })(d);
+    }
+
+    var totalCells = startDow + daysInMonth;
+    var trailing = (7 - (totalCells % 7)) % 7;
+    for(var n=1; n<=trailing; n++){
+      var nd = document.createElement('div');
+      nd.className = 'cal-cell st-open';
+      nd.textContent = n;
+      calGridEl.appendChild(nd);
+    }
+  }
+
+  document.getElementById('calPrev').addEventListener('click', function(){
+    current.month--;
+    if(current.month < 1){ current.month = 12; current.year--; }
+    renderCalendar();
+  });
+  document.getElementById('calNext').addEventListener('click', function(){
+    current.month++;
+    if(current.month > 12){ current.month = 1; current.year++; }
+    renderCalendar();
+  });
+
+  renderCalendar();
+  loadSheet().then(renderCalendar);
+
+  /* ---------- 공지사항 ---------- */
+  var NOTICES = [
+    { t:'작업기간 안내', b:'결제일로부터 휴무일 제외 최대 7일입니다.' },
+    { t:'당일마감 및 빠른마감 안내', b:'당일, 빠른마감은 개당 적용됩니다.' },
+    { t:'작업물 사용안내', b:'2차, 3차 가공은 불가 / 모든 작업물은 사전 동의 없이 제3자에게 양도, 판매, 제공할 수 없습니다.' },
+    { t:'디자인 커미션', b:'일러스트(그림)는 그리지 않습니다. 일러스트를 첨부해 주실 경우 2차 가공 여부는 꼭 확인해 주세요.\n간단한 그림 작업이 필요한 경우 추가 비용이 발생할 수 있으며, 난이도에 따라 별도 안내드립니다.' },
+    { t:'작업 시작 전 요청 사항', b:'디자인 시작 후 새로운 디자인 요청 시 추가 비용 발생 및 추가 작업일이 소요됩니다. 작업 전 요청사항을 자세히 전달 부탁드립니다.' },
+    { t:'수정안내', b:'컨펌 단계 수정 제한은 없습니다. 디자인 전체 수정은 1회까지 무료 제공되며, 이후로는 추가 신청이 필요합니다.' },
+    { t:'디자인 작업 안내', b:'작업 신청 시 스타일 구현이 작가의 작업 역량상 어렵다고 판단되는 경우, 작업이 취소될 수 있습니다.' },
+    { t:'포트폴리오 비공개', b:'포폴 비공개를 요청하실 경우 옵션 선택 부탁드립니다. 선택이 없을 경우 포트폴리오로 사용될 수 있습니다.' },
+    { t:'환불 안내', b:'환불은 아트머그 환불규정에 따릅니다.' }
+  ];
+  var noticeList = document.getElementById('noticeList');
+  NOTICES.forEach(function(n, idx){
+    var item = document.createElement('div');
+    item.className = 'notice-item';
+    var num = document.createElement('div');
+    num.className = 'n-num jalnan';
+    num.textContent = (idx+2 < 10 ? '0'+(idx+2) : (idx+2));
+    var body = document.createElement('div');
+    body.className = 'n-body';
+    var title = document.createElement('div');
+    title.className = 'n-title';
+    title.textContent = n.t;
+    var desc = document.createElement('div');
+    desc.className = 'n-desc';
+    desc.textContent = n.b;
+    body.appendChild(title);
+    body.appendChild(desc);
+    item.appendChild(num);
+    item.appendChild(body);
+    noticeList.appendChild(item);
+  });
+
+  /* ---------- 신청양식 ---------- */
+  var ORDER_ITEMS = PF_CATS.map(function(c){ return c.label; });
+  var fItems = document.getElementById('fItems');
+  ORDER_ITEMS.forEach(function(label){
+    var chip = document.createElement('label');
+    chip.className = 'order-chip';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = label;
+    cb.className = 'order-item-cb';
+    chip.appendChild(cb);
+    chip.appendChild(document.createTextNode(label));
+    fItems.appendChild(chip);
+  });
+
+  function buildText(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('.order-item-cb:checked')).map(function(c){ return c.value; });
+    var opts = [];
+    if(document.getElementById('fOptToday').checked) opts.push('당일마감');
+    if(document.getElementById('fOptFast').checked) opts.push('빠른마감');
+    if(document.getElementById('fOptPrivate').checked) opts.push('포트폴리오 비공개');
+
+    var lines = [];
+    lines.push('[CANA 카나 신청서]');
+    lines.push('');
+    lines.push('01. 신청 정보');
+    lines.push('- 활동명 / 방송 주소 : ' + (document.getElementById('fName').value || '-'));
+    lines.push('- 신청 항목 : ' + (items.length ? items.join(', ') : '-'));
+    lines.push('');
+    lines.push('02. 요청사항');
+    lines.push('- 디자인 및 컨셉 : ' + (document.getElementById('fConcept').value || '-'));
+    lines.push('- 색감 : ' + (document.getElementById('fColor').value || '-'));
+    lines.push('- 내용입력 : ' + (document.getElementById('fContent').value || '-'));
+    lines.push('- 그 외 추가사항 : ' + (document.getElementById('fEtc').value || '-'));
+    lines.push('');
+    lines.push('03. 레퍼런스');
+    lines.push('- ' + (document.getElementById('fRef').value || '-'));
+    lines.push('');
+    lines.push('04. 필독사항 숙지 여부 : ' + (document.getElementById('fAgree').checked ? 'Y' : 'N'));
+    lines.push('');
+    lines.push('추가옵션 : ' + (opts.length ? opts.join(', ') : '없음'));
+    return lines.join('\n');
+  }
+
+  document.getElementById('btnBuild').addEventListener('click', function(){
+    if(!document.getElementById('fAgree').checked){
+      alert('필독사항 숙지 여부(공지사항 확인)에 체크해 주세요.');
+    }
+    var preview = document.getElementById('fPreview');
+    preview.value = buildText();
+    preview.select();
+    preview.setSelectionRange(0, 999999);
+    try{
+      document.execCommand('copy');
+      alert('신청서가 복사되었습니다. 문의 채널에 붙여넣어 주세요!');
+    }catch(e){
+      alert('복사에 실패했습니다. 직접 드래그하여 복사해 주세요.');
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
