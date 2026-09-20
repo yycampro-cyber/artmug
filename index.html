@@ -130,7 +130,7 @@
   .cal-cell.st-full { background:transparent; color:var(--text-dim); }
   .cal-cell.st-off { background:transparent; color:var(--text-dim); border:1px solid var(--line); }
   .cal-cell.is-today { background:var(--white); color:var(--cal-text); box-shadow:0 0 0 2px var(--cal-text) inset; }
-  .cal-note { text-align:center; margin-top:22px; font-size:11.5px; color:var(--text-dim); line-height:1.8; }
+  .cal-note { text-align:center; margin-top:22px; padding:12px 16px; background:var(--pink-soft); border-radius:12px; font-size:12px; font-weight:700; color:var(--pink-deep); line-height:1.8; }
 
   /* ---- 공지사항 ---- */
   .notice-wrap { max-width:900px; margin:24px auto 0; }
@@ -168,7 +168,7 @@
   .pkg-list { margin-top:10px; display:flex; flex-direction:column; gap:9px; }
   .pkg-list li { list-style:none; font-size:12.5px; color:var(--text); padding-left:22px; position:relative; line-height:1.6; }
   .pkg-list li::before { content:'✓'; position:absolute; left:0; color:var(--pink); font-weight:900; }
-  .pkg-note { text-align:center; margin-top:20px; font-size:11px; color:var(--text-dim); line-height:1.8; max-width:760px; margin-left:auto; margin-right:auto; }
+  .pkg-note { text-align:center; margin:20px auto 0; padding:12px 18px; background:var(--pink-soft); border-radius:12px; font-size:12px; font-weight:700; color:var(--pink-deep); line-height:1.8; max-width:760px; }
 
   /* ---- 신청양식 ---- */
   .order-form { max-width:760px; margin:26px auto 0; }
@@ -192,7 +192,7 @@
   .order-action-btn:hover { border-color:var(--pink); color:var(--pink-deep); }
   .order-action-btn--primary:hover { background:var(--pink-deep); color:#fff; }
   .order-preview { width:100%; min-height:200px; margin-top:2px; padding:14px 16px; border:1px solid var(--line); border-radius:14px; background:#fafafa; color:var(--text-soft); font-family:inherit; font-size:11.5px; line-height:1.7; resize:vertical; }
-  .order-note { margin-top:14px; text-align:center; font-size:11.5px; color:var(--text-dim); line-height:1.8; }
+  .order-note { margin-top:14px; text-align:center; padding:12px 16px; background:var(--pink-soft); border-radius:12px; font-size:12px; font-weight:700; color:var(--pink-deep); line-height:1.8; }
 
   /* ---- 포트폴리오 ---- */
   .pf-tabrow { display:flex; align-items:center; justify-content:center; max-width:1000px; margin:14px auto 0; }
@@ -218,6 +218,7 @@
   }
   .pf-item img { width:100%; height:auto; display:block; }
   .pf-empty { break-inside:avoid; text-align:center; padding:60px 16px; color:var(--text-dim); font-size:13px; border:1px dashed var(--line); border-radius:16px; }
+  .pf-grid.pf-grid--empty { column-count:1; max-width:520px; }
 
   .pf-lightbox { position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; background:rgba(60,30,45,0.82); padding:24px; }
   .pf-lightbox.show { display:flex; }
@@ -533,15 +534,18 @@
   function renderGrid(){
     var cat = PF_CATS.filter(function(c){ return c.key === activeKey; })[0];
     pfGrid.innerHTML = '';
-    pfGrid.classList.toggle('pf-grid--wide', !!cat.wide);
     var fileList = cat.files || (cat.count ? Array.from({length:cat.count}, function(_,i){ var n=i+1; return n<10?'0'+n:''+n; }) : null);
     if(!cat.folder || !fileList){
+      pfGrid.classList.remove('pf-grid--wide');
+      pfGrid.classList.add('pf-grid--empty');
       var empty = document.createElement('div');
       empty.className = 'pf-empty';
       empty.textContent = '해당 카테고리 포트폴리오는 준비 중입니다. 문의 시 편하게 물어봐 주세요!';
       pfGrid.appendChild(empty);
       return;
     }
+    pfGrid.classList.remove('pf-grid--empty');
+    pfGrid.classList.toggle('pf-grid--wide', !!cat.wide);
     fileList.forEach(function(num){
       var src = cat.folder + '/' + num + '.png';
       var item = document.createElement('div');
