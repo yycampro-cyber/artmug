@@ -713,8 +713,7 @@
     var target = new Date(y, m-1, d);
     var todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     if(target < todayMid) return 'full';
-    var dow = target.getDay();
-    return (dow === 0 || dow === 6) ? 'off' : 'open';
+    return 'open';
   }
   var STATUS_LABEL = { open:'', full:'마감', off:'휴무' };
 
