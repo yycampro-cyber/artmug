@@ -120,6 +120,10 @@
   .cal-legend-pill::before { content:''; width:10px; height:10px; border-radius:50%; background:var(--cal-fill); display:inline-block; }
   .cal-legend-pill.full::before { background:var(--grey-fill); }
   .cal-legend-pill.off::before { background:var(--white); border:1px solid var(--text-dim); box-sizing:border-box; }
+  @media (max-width:560px) {
+    .cal-top { flex-direction:column; gap:10px; }
+    .cal-legend { position:static; justify-content:center; }
+  }
   .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:10px 6px; margin-top:28px; }
   .cal-dow { text-align:center; font-size:12px; font-weight:800; color:var(--text-dim); padding-bottom:8px; }
   .cal-cell {
@@ -209,7 +213,7 @@
   .pf-tab:hover { border-color:var(--pink); color:var(--pink-deep); }
   .pf-tab.is-active { background:var(--pink); border-color:var(--pink); color:#fff; }
   .pf-tab:focus-visible { outline:2px solid var(--pink); outline-offset:2px; }
-  .pf-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; max-width:1200px; margin:20px auto 0; }
+  .pf-grid { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:14px; max-width:1200px; margin:20px auto 0; }
   .pf-item { width:calc(50% - 7px); }
   @media (min-width:700px) { .pf-item { width:calc(33.333% - 10px); } }
   @media (min-width:1000px) { .pf-item { width:calc(25% - 11px); } }
@@ -510,6 +514,38 @@
     });
   });
 
+  /* ---------- iframe 높이 보고 (아트머그에서 콘텐츠 잘림 방지) ----------
+   * 부모 페이지는 iframe에 postMessage로 {height: ...} 를 받으면 iframe.style.height를
+   * 그 값으로 맞춰줍니다. 우리가 높이를 안 보내면 iframe 초기 높이(또는 잘못된 높이)로
+   * 고정되어 아래쪽 콘텐츠가 잘려 보입니다. 그래서 로드/리사이즈/이미지 로드/텍스트 반영마다
+   * 실제 문서 높이를 계속 보고합니다.
+   */
+  var lastReportedHeight = 0;
+  function reportHeight(){
+    if(!(window.parent && window.parent !== window)) return;
+    var h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    if(h !== lastReportedHeight){
+      lastReportedHeight = h;
+      try{ window.parent.postMessage({ height: h }, '*'); }catch(e){}
+    }
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  document.querySelectorAll('img').forEach(function(img){
+    if(img.complete) return;
+    img.addEventListener('load', reportHeight);
+    img.addEventListener('error', reportHeight);
+  });
+  if(window.ResizeObserver){
+    new ResizeObserver(reportHeight).observe(document.body);
+  } else {
+    setInterval(reportHeight, 500);
+  }
+  reportHeight();
+
   /* ---------- 구글 스프레드시트 텍스트 연동 (전체 텍스트 CMS) ----------
    * 구글 시트 컬럼: key, value (1행은 헤더)
    * value 안에서 줄바꿈(Alt+Enter)을 넣으면 그대로 <br> 로 변환되어 표시됩니다.
@@ -596,7 +632,7 @@
     { key:'life4_small', label:'인생네컷 소형', folder:'images/portfolio/인생네컷소형', count:6, group:1 },
     { key:'cheki', label:'체키틀', folder:null, group:1 },
     { key:'debut_thumb', label:'데뷔 썸네일', folder:null, group:1 },
-    { key:'soop_profile', label:'SOOP 프로필', folder:null, group:2 },
+    { key:'soop_profile', label:'SOOP 프로팅', folder:null, group:2 },
     { key:'soop_top', label:'SOOP 상단', folder:null, group:2 },
     { key:'soop_bottom', label:'SOOP 하단', folder:null, group:2 },
     { key:'chzzk_bottom', label:'치지직 하단', folder:null, group:2 },
