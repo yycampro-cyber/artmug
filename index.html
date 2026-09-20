@@ -204,22 +204,21 @@
   .pf-tab:hover { border-color:var(--pink); color:var(--pink-deep); }
   .pf-tab.is-active { background:var(--pink); border-color:var(--pink); color:#fff; }
   .pf-tab:focus-visible { outline:2px solid var(--pink); outline-offset:2px; }
-  .pf-grid { column-count:2; column-gap:14px; max-width:1200px; margin:20px auto 0; }
-  @media (min-width:700px) { .pf-grid { column-count:3; } }
-  @media (min-width:1000px) { .pf-grid { column-count:4; } }
-  .pf-grid.pf-grid--wide { column-count:1; max-width:1080px; }
-  @media (min-width:700px) { .pf-grid.pf-grid--wide { column-count:2; } }
+  .pf-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; max-width:1200px; margin:20px auto 0; }
+  .pf-item { width:calc(50% - 7px); }
+  @media (min-width:700px) { .pf-item { width:calc(33.333% - 10px); } }
+  @media (min-width:1000px) { .pf-item { width:calc(25% - 11px); } }
+  .pf-grid.pf-grid--wide .pf-item { width:100%; }
+  @media (min-width:700px) { .pf-grid.pf-grid--wide .pf-item { width:calc(50% - 7px); } }
   .pf-item {
     border-radius:4px; overflow:hidden; border:1px solid var(--line); cursor:zoom-in; background:var(--white);
-    break-inside:avoid; margin:0 0 16px;
   }
   .pf-item img { width:100%; height:auto; display:block; }
-  .pf-empty { break-inside:avoid; text-align:center; padding:60px 16px; color:var(--text-dim); font-size:13px; border:1px dashed var(--line); border-radius:16px; }
-  .pf-grid.pf-grid--empty { column-count:1; max-width:520px; }
+  .pf-empty { text-align:center; padding:60px 16px; color:var(--text-dim); font-size:13px; border:1px dashed var(--line); border-radius:16px; width:100%; max-width:520px; }
 
-  .pf-lightbox { position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; background:rgba(60,30,45,0.82); padding:24px; }
+  .pf-lightbox { position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; background:rgba(15,26,46,0.85); padding:24px; }
   .pf-lightbox.show { display:flex; }
-  .pf-lightbox img { max-width:100%; max-height:90vh; border-radius:12px; }
+  .pf-lightbox img { max-width:100%; max-height:90vh; border-radius:0; }
   .pf-lightbox-close { position:absolute; top:18px; right:22px; width:38px; height:38px; border-radius:10px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.12); color:#fff; font-size:20px; cursor:pointer; }
 
   footer { text-align:center; padding:36px 16px; color:var(--text-dim); font-size:11px; line-height:1.9; }
@@ -238,15 +237,15 @@
 
 <div class="topnav">
   <div class="topnav-inner">
-    <div class="topnav-logo">CANA 카나</div>
+    <div class="topnav-logo" data-i18n="nav_logo">CANA 카나</div>
     <div class="topnav-links">
-      <a class="topnav-link" href="#greet">인사말</a>
-      <a class="topnav-link" href="#event">EVENT</a>
-      <a class="topnav-link" href="#portfolio">포트폴리오</a>
-      <a class="topnav-link" href="#schedule">작업일정</a>
-      <a class="topnav-link" href="#notice">공지사항</a>
-      <a class="topnav-link" href="#package">패키지</a>
-      <a class="topnav-link" href="#order">신청양식</a>
+      <a class="topnav-link" href="#greet" data-i18n="nav_greet">인사말</a>
+      <a class="topnav-link" href="#event" data-i18n="nav_event">EVENT</a>
+      <a class="topnav-link" href="#portfolio" data-i18n="nav_portfolio">포트폴리오</a>
+      <a class="topnav-link" href="#schedule" data-i18n="nav_schedule">작업일정</a>
+      <a class="topnav-link" href="#notice" data-i18n="nav_notice">공지사항</a>
+      <a class="topnav-link" href="#package" data-i18n="nav_package">패키지</a>
+      <a class="topnav-link" href="#order" data-i18n="nav_order">신청양식</a>
     </div>
   </div>
 </div>
@@ -255,21 +254,21 @@
   <div class="hero-card hero-card--centered">
     <div class="hero-top-row">
       <div class="hero-face"><img src="images/카나-profile-square.jpg" alt="카나 프로필"></div>
-      <div class="hero-name jalnan">CANA <small>카나</small></div>
+      <div class="hero-name jalnan"><span data-i18n="hero_name">CANA</span> <small data-i18n="hero_name_kr">카나</small></div>
     </div>
     <div class="hero-body">
       <div class="hero-tags">
-        <span class="hero-tag">#Virtual</span>
-        <span class="hero-tag">#All Design</span>
-        <span class="hero-tag">#Cute</span>
-        <span class="hero-tag">#포스터</span>
-        <span class="hero-tag">#PPT</span>
+        <span class="hero-tag" data-i18n="hero_tag1">#Virtual</span>
+        <span class="hero-tag" data-i18n="hero_tag2">#All Design</span>
+        <span class="hero-tag" data-i18n="hero_tag3">#Cute</span>
+        <span class="hero-tag" data-i18n="hero_tag4">#포스터</span>
+        <span class="hero-tag" data-i18n="hero_tag5">#PPT</span>
       </div>
-      <p class="hero-desc">안녕하세요 카나CANA 입니다.<br>캐릭터의 개성과 채널분위기를 최대한 살릴 맞춤 디자인을 제작합니다.<br>메뉴에 없는 것도 편하게 문의 주시면 됩니다♡</p>
+      <p class="hero-desc" data-i18n="hero_desc">안녕하세요 카나CANA 입니다.<br>캐릭터의 개성과 채널분위기를 최대한 살릴 맞춤 디자인을 제작합니다.<br>메뉴에 없는 것도 편하게 문의 주시면 됩니다♡</p>
       <div class="hero-btns">
-        <a class="hero-btn primary" href="#order">문의양식</a>
-        <a class="hero-btn" href="#schedule">작업일정</a>
-        <a class="hero-btn" href="#portfolio">포트폴리오</a>
+        <a class="hero-btn primary" href="#order" data-i18n="hero_btn1">문의양식</a>
+        <a class="hero-btn" href="#schedule" data-i18n="hero_btn2">작업일정</a>
+        <a class="hero-btn" href="#portfolio" data-i18n="hero_btn3">포트폴리오</a>
       </div>
     </div>
   </div>
@@ -277,19 +276,19 @@
 
 <section class="section" id="event">
   <div class="section-title-row">
-    <div class="section-title">RE-OPEN 리뷰 이벤트</div>
+    <div class="section-title" data-i18n="event_section_title">RE-OPEN 리뷰 이벤트</div>
     <div class="section-underline"></div>
   </div>
   <div class="event-box">
-    <div class="ev-period">~ 10월 20일까지</div>
-    <div class="ev-title">리뷰 작성 시 혜택 선택 가능</div>
-    <div class="ev-desc">5,000원 할인 <b>OR</b> 시그풍 1개 제작</div>
+    <div class="ev-period" data-i18n="event_period">~ 10월 20일까지</div>
+    <div class="ev-title" data-i18n="event_title">리뷰 작성 시 혜택 선택 가능</div>
+    <div class="ev-desc" data-i18n="event_desc">5,000원 할인 OR 시그풍 1개 제작</div>
   </div>
 </section>
 
 <section class="section" id="portfolio">
   <div class="section-title-row">
-    <div class="section-title">포트폴리오</div>
+    <div class="section-title" data-i18n="portfolio_section_title">포트폴리오</div>
     <div class="section-underline"></div>
   </div>
   <div class="pf-tabrow">
@@ -304,10 +303,10 @@
 <div class="pink-region">
   <section class="section" id="schedule">
     <div class="section-title-row">
-      <div class="section-title">작업일정</div>
+      <div class="section-title" data-i18n="schedule_section_title">작업일정</div>
       <div class="section-underline"></div>
     </div>
-    <p class="section-lead">휴무일에 작업이 진행되지않으며 문의 및 예약만 가능합니다♡<br>당일마감, 빠른마감도 휴무일 제외 문의 부탁드립니다♡</p>
+    <p class="section-lead" data-i18n="schedule_lead">휴무일에 작업이 진행되지않으며 문의 및 예약만 가능합니다♡<br>당일마감, 빠른마감도 휴무일 제외 문의 부탁드립니다♡</p>
 
     <div class="cal-card">
       <div class="cal-top">
@@ -317,27 +316,27 @@
           <button class="cal-nav" id="calNext">›</button>
         </div>
         <div class="cal-legend">
-          <span class="cal-legend-pill">예약 가능</span>
-          <span class="cal-legend-pill full">예약 마감</span>
-          <span class="cal-legend-pill off">휴무</span>
+          <span class="cal-legend-pill" data-i18n="cal_legend_open">예약 가능</span>
+          <span class="cal-legend-pill full" data-i18n="cal_legend_full">예약 마감</span>
+          <span class="cal-legend-pill off" data-i18n="cal_legend_off">휴무</span>
         </div>
       </div>
       <div class="cal-grid" id="calGrid"></div>
-      <p class="cal-note">달력은 예약 현황에 따라 실시간으로 업데이트됩니다. 정확한 마감 일정은 문의를 통해 다시 한 번 확인해 주세요.</p>
+      <p class="cal-note" data-i18n="cal_note">달력은 예약 현황에 따라 실시간으로 업데이트됩니다. 정확한 마감 일정은 문의를 통해 다시 한 번 확인해 주세요.</p>
     </div>
   </section>
 </div>
 
 <section class="section" id="notice">
   <div class="section-title-row">
-    <div class="section-title">공지사항</div>
+    <div class="section-title" data-i18n="notice_section_title">공지사항</div>
     <div class="section-underline"></div>
   </div>
   <div class="notice-wrap">
     <div class="notice-first">
       <div class="n-num jalnan">01</div>
-      <div class="n-title">신청 전 공지사항을 꼭 확인해주세요. <span class="n-req">필독</span></div>
-      <div class="n-desc">신청 전 공지사항 미숙지로 인해 발생하는 문제에 대해서는 책임지지 않습니다.</div>
+      <div class="n-title"><span data-i18n="notice_intro_title">신청 전 공지사항을 꼭 확인해주세요.</span> <span class="n-req" data-i18n="notice_intro_badge">필독</span></div>
+      <div class="n-desc" data-i18n="notice_intro_desc">신청 전 공지사항 미숙지로 인해 발생하는 문제에 대해서는 책임지지 않습니다.</div>
     </div>
     <div class="notice-grid" id="noticeList"></div>
   </div>
@@ -346,137 +345,137 @@
 <div class="pink-region">
   <section class="section" id="package">
     <div class="section-title-row">
-      <div class="section-title">패키지 가격</div>
+      <div class="section-title" data-i18n="package_section_title">패키지 가격</div>
       <div class="section-underline"></div>
     </div>
-    <p class="section-lead">기존 패키지 구성 빼는 건 불가능하며, 변경 또는 추가는 가능합니다.<br>(금액에 맞는 변경은 가능하나 추가 시 추가 비용이 발생할 수 있습니다)</p>
+    <p class="section-lead" data-i18n="package_lead">기존 패키지 구성 빼는 건 불가능하며, 변경 또는 추가는 가능합니다.<br>(금액에 맞는 변경은 가능하나 추가 시 추가 비용이 발생할 수 있습니다)</p>
     <div class="pkg-grid">
       <div class="pkg-card">
-        <div class="pkg-name">Basic 패키지</div>
-        <div class="pkg-price-row"><span class="old">285,000원</span><span class="now">23만원</span></div>
-        <div class="pkg-tagline">데뷔기본♥</div>
-        <div class="pkg-days-note">※ Basic 패키지 작업기간은 총 20일 이내 소요예정입니다.</div>
-        <div class="pkg-included-label">포함 구성</div>
+        <div class="pkg-name" data-i18n="pkg_basic_name">Basic 패키지</div>
+        <div class="pkg-price-row"><span class="old" data-i18n="pkg_basic_old">285,000원</span><span class="now" data-i18n="pkg_basic_now">23만원</span></div>
+        <div class="pkg-tagline" data-i18n="pkg_basic_tagline">데뷔기본♥</div>
+        <div class="pkg-days-note" data-i18n="pkg_basic_days">※ Basic 패키지 작업기간은 총 20일 이내 소요예정입니다.</div>
+        <div class="pkg-included-label" data-i18n="pkg_included_label">포함 구성</div>
         <ul class="pkg-list">
-          <li>RT공개 포스터</li>
-          <li>[장수제한X][PNG전달] PPT</li>
-          <li>가로형 데뷔 썸네일</li>
-          <li>[컨텐츠,공고,모집등] 일반 홍보 포스터</li>
-          <li>[PSD파일포함] 스케쥴 가로</li>
-          <li>[PSD파일포함] 스케쥴 세로</li>
-          <li>[PSD파일포함] 다시보기틀</li>
+          <li data-i18n="pkg_basic_item1">RT공개 포스터</li>
+          <li data-i18n="pkg_basic_item2">[장수제한X][PNG전달] PPT</li>
+          <li data-i18n="pkg_basic_item3">가로형 데뷔 썸네일</li>
+          <li data-i18n="pkg_basic_item4">[컨텐츠,공고,모집등] 일반 홍보 포스터</li>
+          <li data-i18n="pkg_basic_item5">[PSD파일포함] 스케쥴 가로</li>
+          <li data-i18n="pkg_basic_item6">[PSD파일포함] 스케쥴 세로</li>
+          <li data-i18n="pkg_basic_item7">[PSD파일포함] 다시보기틀</li>
         </ul>
       </div>
       <div class="pkg-card is-featured">
-        <span class="pkg-ribbon">추천</span>
-        <div class="pkg-name">Standard 패키지</div>
-        <div class="pkg-price-row"><span class="old">395,000원</span><span class="now">30만원</span></div>
-        <div class="pkg-tagline">데뷔기본+업그레이드♥</div>
-        <div class="pkg-days-note">※ Standard 패키지 작업기간은 총 25일 이내 소요예정입니다.</div>
-        <div class="pkg-included-label">포함 구성</div>
+        <span class="pkg-ribbon" data-i18n="pkg_ribbon">추천</span>
+        <div class="pkg-name" data-i18n="pkg_std_name">Standard 패키지</div>
+        <div class="pkg-price-row"><span class="old" data-i18n="pkg_std_old">395,000원</span><span class="now" data-i18n="pkg_std_now">30만원</span></div>
+        <div class="pkg-tagline" data-i18n="pkg_std_tagline">데뷔기본+업그레이드♥</div>
+        <div class="pkg-days-note" data-i18n="pkg_std_days">※ Standard 패키지 작업기간은 총 25일 이내 소요예정입니다.</div>
+        <div class="pkg-included-label" data-i18n="pkg_included_label">포함 구성</div>
         <ul class="pkg-list">
-          <li>RT공개 포스터</li>
-          <li>[장수제한X][PNG전달] PPT</li>
-          <li>가로형 데뷔 썸네일</li>
-          <li>[컨텐츠,공고,모집등] 일반 홍보 포스터</li>
-          <li>[PSD파일포함] 스케쥴 가로</li>
-          <li>[PSD파일포함] 스케쥴 세로</li>
-          <li>[PSD파일포함] 다시보기틀</li>
-          <li>SOOP 상단 배너 OR 치지직 배너</li>
-          <li>체키틀</li>
-          <li>[대형][PSD파일포함] 인생네컷</li>
-          <li>[소형][PSD파일포함] 인생네컷</li>
+          <li data-i18n="pkg_std_item1">RT공개 포스터</li>
+          <li data-i18n="pkg_std_item2">[장수제한X][PNG전달] PPT</li>
+          <li data-i18n="pkg_std_item3">가로형 데뷔 썸네일</li>
+          <li data-i18n="pkg_std_item4">[컨텐츠,공고,모집등] 일반 홍보 포스터</li>
+          <li data-i18n="pkg_std_item5">[PSD파일포함] 스케쥴 가로</li>
+          <li data-i18n="pkg_std_item6">[PSD파일포함] 스케쥴 세로</li>
+          <li data-i18n="pkg_std_item7">[PSD파일포함] 다시보기틀</li>
+          <li data-i18n="pkg_std_item8">SOOP 상단 배너 OR 치지직 배너</li>
+          <li data-i18n="pkg_std_item9">체키틀</li>
+          <li data-i18n="pkg_std_item10">[대형][PSD파일포함] 인생네컷</li>
+          <li data-i18n="pkg_std_item11">[소형][PSD파일포함] 인생네컷</li>
         </ul>
       </div>
     </div>
-    <p class="pkg-note">기존 패키지 구성을 빼는 것은 불가능하며 변경 또는 추가는 가능합니다. (금액에 맞는 변경은 가능하나 추가 시 추가 비용이 발생할 수 있습니다)</p>
+    <p class="pkg-note" data-i18n="pkg_note">기존 패키지 구성을 빼는 것은 불가능하며 변경 또는 추가는 가능합니다. (금액에 맞는 변경은 가능하나 추가 시 추가 비용이 발생할 수 있습니다)</p>
   </section>
 </div>
 
 <section class="section" id="order">
   <div class="section-title-row">
-    <div class="section-title">신청 양식</div>
+    <div class="section-title" data-i18n="order_section_title">신청 양식</div>
     <div class="section-underline"></div>
   </div>
-  <p class="section-lead">작성한 내용을 복사해 문의 채널에 붙여넣어 주세요.</p>
+  <p class="section-lead" data-i18n="order_lead">작성한 내용을 복사해 문의 채널에 붙여넣어 주세요.</p>
 
   <div class="order-form">
     <div class="order-card">
 
       <div>
-        <div class="order-sec-title"><span class="num">01</span> 신청 정보</div>
+        <div class="order-sec-title"><span class="num">01</span> <span data-i18n="order_sec1_title">신청 정보</span></div>
         <div class="order-sec-body">
           <div class="order-field">
-            <label class="order-label">활동명 / 방송하는 주소 <span class="req-pill">필수</span></label>
-            <input class="order-input" id="fName" placeholder="예) 카나 / https://artmug.kr/index.php?channel=view&uid=45115">
+            <label class="order-label"><span data-i18n="order_label_name">활동명 / 방송하는 주소</span> <span class="req-pill" data-i18n="req_pill_label">필수</span></label>
+            <input class="order-input" id="fName" data-i18n="order_placeholder_name" data-i18n-attr="placeholder" placeholder="예) 카나 / https://artmug.kr/index.php?channel=view&uid=45115">
           </div>
           <div class="order-field">
-            <label class="order-label">신청 항목 <span class="req-pill">필수</span></label>
+            <label class="order-label"><span data-i18n="order_label_items">신청 항목</span> <span class="req-pill" data-i18n="req_pill_label">필수</span></label>
             <div class="order-checks" id="fItems"></div>
           </div>
         </div>
       </div>
 
       <div>
-        <div class="order-sec-title"><span class="num">02</span> 요청사항</div>
+        <div class="order-sec-title"><span class="num">02</span> <span data-i18n="order_sec2_title">요청사항</span></div>
         <div class="order-sec-body">
           <div class="order-field">
-            <label class="order-label">디자인 및 컨셉 <span class="req-pill">필수</span></label>
-            <input class="order-input" id="fConcept" placeholder="예) 귀여움, 고양이, 시크 등">
+            <label class="order-label"><span data-i18n="order_label_concept">디자인 및 컨셉</span> <span class="req-pill" data-i18n="req_pill_label">필수</span></label>
+            <input class="order-input" id="fConcept" data-i18n="order_placeholder_concept" data-i18n-attr="placeholder" placeholder="예) 귀여움, 고양이, 시크 등">
           </div>
           <div class="order-field">
-            <label class="order-label">색감 (색상 코드가 있으면 좋아요) <span class="req-pill">필수</span></label>
-            <input class="order-input" id="fColor" placeholder="예) 민트 + 하늘 + 화이트">
+            <label class="order-label"><span data-i18n="order_label_color">색감 (색상 코드가 있으면 좋아요)</span> <span class="req-pill" data-i18n="req_pill_label">필수</span></label>
+            <input class="order-input" id="fColor" data-i18n="order_placeholder_color" data-i18n-attr="placeholder" placeholder="예) 민트 + 하늘 + 화이트">
           </div>
           <div class="order-field">
-            <label class="order-label">내용입력 <span class="req-pill">필수</span></label>
-            <textarea class="order-textarea" id="fContent" placeholder="예) 들어가는 문구, RT포스터 숫자 및 배치할 정보 등 자세히 적어주세요."></textarea>
+            <label class="order-label"><span data-i18n="order_label_content">내용입력</span> <span class="req-pill" data-i18n="req_pill_label">필수</span></label>
+            <textarea class="order-textarea" id="fContent" data-i18n="order_placeholder_content" data-i18n-attr="placeholder" placeholder="예) 들어가는 문구, RT포스터 숫자 및 배치할 정보 등 자세히 적어주세요."></textarea>
           </div>
           <div class="order-field">
-            <label class="order-label">그 외 추가사항</label>
-            <textarea class="order-textarea" id="fEtc" placeholder="예) 원하는 분위기 및 원치않는 분위기, 참고사항, 희망 마감일"></textarea>
+            <label class="order-label" data-i18n="order_label_etc">그 외 추가사항</label>
+            <textarea class="order-textarea" id="fEtc" data-i18n="order_placeholder_etc" data-i18n-attr="placeholder" placeholder="예) 원하는 분위기 및 원치않는 분위기, 참고사항, 희망 마감일"></textarea>
           </div>
         </div>
       </div>
 
       <div>
-        <div class="order-sec-title"><span class="num">03</span> 레퍼런스</div>
+        <div class="order-sec-title"><span class="num">03</span> <span data-i18n="order_sec3_title">레퍼런스</span></div>
         <div class="order-sec-body">
           <div class="order-field">
-            <label class="order-label">들어갔으면 하는 이미지 및 레퍼런스</label>
-            <textarea class="order-textarea" id="fRef" placeholder="꼭 들어가야 하는 이미지가 있다면 파일명이나 설명을 적어주시고, 실제 파일은 문의 채널에 함께 첨부해 주세요."></textarea>
+            <label class="order-label" data-i18n="order_label_ref">들어갔으면 하는 이미지 및 레퍼런스</label>
+            <textarea class="order-textarea" id="fRef" data-i18n="order_placeholder_ref" data-i18n-attr="placeholder" placeholder="꼭 들어가야 하는 이미지가 있다면 파일명이나 설명을 적어주시고, 실제 파일은 문의 채널에 함께 첨부해 주세요."></textarea>
           </div>
         </div>
       </div>
 
       <div>
-        <div class="order-sec-title"><span class="num">04</span> 필독사항 숙지 여부</div>
+        <div class="order-sec-title"><span class="num">04</span> <span data-i18n="order_sec4_title">필독사항 숙지 여부</span></div>
         <div class="order-sec-body">
-          <label class="order-chip"><input type="checkbox" id="fAgree"> 공지사항을 모두 확인했으며 동의합니다 (Y)</label>
+          <label class="order-chip"><input type="checkbox" id="fAgree"> <span data-i18n="order_chip_agree">공지사항을 모두 확인했으며 동의합니다 (Y)</span></label>
         </div>
       </div>
 
       <div>
-        <div class="order-sec-title">추가옵션</div>
+        <div class="order-sec-title" data-i18n="order_sec5_title">추가옵션</div>
         <div class="order-sec-body">
           <div class="order-checks">
-            <label class="order-chip"><input type="checkbox" id="fOptToday"> 당일마감</label>
-            <label class="order-chip"><input type="checkbox" id="fOptFast"> 빠른마감</label>
-            <label class="order-chip"><input type="checkbox" id="fOptPrivate"> 포트폴리오 비공개</label>
+            <label class="order-chip"><input type="checkbox" id="fOptToday"> <span data-i18n="order_chip_today">당일마감</span></label>
+            <label class="order-chip"><input type="checkbox" id="fOptFast"> <span data-i18n="order_chip_fast">빠른마감</span></label>
+            <label class="order-chip"><input type="checkbox" id="fOptPrivate"> <span data-i18n="order_chip_private">포트폴리오 비공개</span></label>
           </div>
         </div>
       </div>
 
       <div class="order-actions">
-        <button class="order-action-btn order-action-btn--primary" id="btnBuild">신청서 만들기</button>
+        <button class="order-action-btn order-action-btn--primary" id="btnBuild" data-i18n="order_btn_build">신청서 만들기</button>
       </div>
-      <textarea class="order-preview" id="fPreview" placeholder="위 항목을 채우고 [신청서 만들기]를 누르면 여기에 신청서가 생성됩니다." readonly></textarea>
-      <p class="order-note">※ 들어가는 모든 이미지는 아트머그 "파일첨부"로 부탁드립니다.<br>(개별 또는 압축파일로 첨부 부탁드려요. 원본 해상도를 유지하기 위함입니다)</p>
+      <textarea class="order-preview" id="fPreview" data-i18n="order_preview_placeholder" data-i18n-attr="placeholder" placeholder="위 항목을 채우고 [신청서 만들기]를 누르면 여기에 신청서가 생성됩니다." readonly></textarea>
+      <p class="order-note" data-i18n="order_note">※ 들어가는 모든 이미지는 아트머그 "파일첨부"로 부탁드립니다.<br>(개별 또는 압축파일로 첨부 부탁드려요. 원본 해상도를 유지하기 위함입니다)</p>
     </div>
   </div>
 </section>
 
-<footer>
+<footer data-i18n="footer_text">
   본 페이지의 모든 작업물은 사전 동의 없이 2차 가공, 제3자 양도·판매·제공이 불가합니다.<br>
   © CANA. 환불은 아트머그 환불규정에 따릅니다.
 </footer>
@@ -488,6 +487,83 @@
 
 <script>
 (function(){
+
+  /* ---------- 구글 스프레드시트 텍스트 연동 (전체 텍스트 CMS) ----------
+   * 구글 시트 컬럼: key, value (1행은 헤더)
+   * value 안에서 줄바꿈(Alt+Enter)을 넣으면 그대로 <br> 로 변환되어 표시됩니다.
+   * 시트에 없는 key는 페이지에 원래 적혀있던 기본 텍스트가 그대로 유지됩니다.
+   */
+  var TEXT_SHEET_ID = '1IyimTWWf6qKENfH1c0aX1KYfSQRW3TxjDlGoBM47avk';
+  var TEXT_SHEET_GID = '0';
+  var TEXT_CSV_URL = 'https://docs.google.com/spreadsheets/d/' + TEXT_SHEET_ID + '/export?format=csv&gid=' + TEXT_SHEET_GID;
+  window.TEXT = {};
+
+  function parseTextCSV(text){
+    // RFC4180 스타일 CSV 파서 (따옴표 안의 줄바꿈/쉼표 지원)
+    var rows = [];
+    var row = [];
+    var field = '';
+    var inQuotes = false;
+    for(var i=0; i<text.length; i++){
+      var c = text[i];
+      if(inQuotes){
+        if(c === '"'){
+          if(text[i+1] === '"'){ field += '"'; i++; }
+          else { inQuotes = false; }
+        } else {
+          field += c;
+        }
+      } else {
+        if(c === '"'){ inQuotes = true; }
+        else if(c === ','){ row.push(field); field = ''; }
+        else if(c === '\r'){ /* skip */ }
+        else if(c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+        else { field += c; }
+      }
+    }
+    if(field.length || row.length){ row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function loadTextSheet(){
+    return fetch(TEXT_CSV_URL)
+      .then(function(res){ return res.text(); })
+      .then(function(csvText){
+        var rows = parseTextCSV(csvText);
+        if(!rows.length) return;
+        var startIdx = 0;
+        var h0 = (rows[0][0] || '').trim().toLowerCase();
+        if(h0 === 'key' || h0 === '키') startIdx = 1;
+        for(var i=startIdx; i<rows.length; i++){
+          var key = (rows[i][0] || '').trim();
+          var value = rows[i][1];
+          if(key && value !== undefined && value !== ''){
+            window.TEXT[key] = value;
+          }
+        }
+      })
+      .catch(function(err){ console.warn('텍스트 시트 불러오기 실패:', err); });
+  }
+
+  function applyI18N(){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var val = window.TEXT[key];
+      if(val === undefined || val === '') return;
+      var attr = el.getAttribute('data-i18n-attr');
+      if(attr){
+        el.setAttribute(attr, val);
+      } else if(val.indexOf('\n') !== -1){
+        el.innerHTML = val.split('\n').map(function(s){
+          var d = document.createElement('div');
+          d.textContent = s;
+          return d.innerHTML;
+        }).join('<br>');
+      } else {
+        el.textContent = val;
+      }
+    });
+  }
 
   /* ---------- 포트폴리오 ---------- */
   var PF_CATS = [
@@ -512,13 +588,17 @@
   var pfGrid = document.getElementById('pfGrid');
   var activeKey = PF_CATS[0].key;
 
+  function pfLabel(cat){
+    return (window.TEXT && window.TEXT['pf_' + cat.key]) || cat.label;
+  }
+
   function renderTabs(){
     pfTabsG1.innerHTML = '';
     pfTabsG2.innerHTML = '';
     PF_CATS.forEach(function(cat){
       var b = document.createElement('button');
       b.className = 'pf-tab' + (cat.key === activeKey ? ' is-active' : '');
-      b.textContent = cat.label;
+      b.textContent = pfLabel(cat);
       b.addEventListener('click', function(){
         activeKey = cat.key;
         renderTabs();
@@ -538,7 +618,7 @@
       pfGrid.classList.add('pf-grid--empty');
       var empty = document.createElement('div');
       empty.className = 'pf-empty';
-      empty.textContent = '해당 카테고리 포트폴리오는 준비 중입니다. 문의 시 편하게 물어봐 주세요!';
+      empty.textContent = (window.TEXT && window.TEXT.pf_empty_msg) || '해당 카테고리 포트폴리오는 준비 중입니다. 문의 시 편하게 물어봐 주세요!';
       pfGrid.appendChild(empty);
       return;
     }
@@ -704,41 +784,52 @@
     { t:'환불 안내', b:'환불은 아트머그 환불규정에 따릅니다.' }
   ];
   var noticeList = document.getElementById('noticeList');
-  NOTICES.forEach(function(n, idx){
-    var item = document.createElement('div');
-    item.className = 'notice-item';
-    var num = document.createElement('div');
-    num.className = 'n-num jalnan';
-    num.textContent = (idx+2 < 10 ? '0'+(idx+2) : (idx+2));
-    var body = document.createElement('div');
-    body.className = 'n-body';
-    var title = document.createElement('div');
-    title.className = 'n-title';
-    title.textContent = n.t;
-    var desc = document.createElement('div');
-    desc.className = 'n-desc';
-    desc.textContent = n.b;
-    body.appendChild(title);
-    body.appendChild(desc);
-    item.appendChild(num);
-    item.appendChild(body);
-    noticeList.appendChild(item);
-  });
+  function renderNotices(){
+    noticeList.innerHTML = '';
+    NOTICES.forEach(function(n, idx){
+      var num = idx + 1;
+      var t = (window.TEXT && window.TEXT['notice' + num + '_title']) || n.t;
+      var b = (window.TEXT && window.TEXT['notice' + num + '_desc']) || n.b;
+      var item = document.createElement('div');
+      item.className = 'notice-item';
+      var numEl = document.createElement('div');
+      numEl.className = 'n-num jalnan';
+      numEl.textContent = (idx+2 < 10 ? '0'+(idx+2) : (idx+2));
+      var body = document.createElement('div');
+      body.className = 'n-body';
+      var title = document.createElement('div');
+      title.className = 'n-title';
+      title.textContent = t;
+      var desc = document.createElement('div');
+      desc.className = 'n-desc';
+      desc.textContent = b;
+      body.appendChild(title);
+      body.appendChild(desc);
+      item.appendChild(numEl);
+      item.appendChild(body);
+      noticeList.appendChild(item);
+    });
+  }
+  renderNotices();
 
   /* ---------- 신청양식 ---------- */
-  var ORDER_ITEMS = PF_CATS.map(function(c){ return c.label; });
   var fItems = document.getElementById('fItems');
-  ORDER_ITEMS.forEach(function(label){
-    var chip = document.createElement('label');
-    chip.className = 'order-chip';
-    var cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.value = label;
-    cb.className = 'order-item-cb';
-    chip.appendChild(cb);
-    chip.appendChild(document.createTextNode(label));
-    fItems.appendChild(chip);
-  });
+  function renderOrderItems(){
+    fItems.innerHTML = '';
+    PF_CATS.forEach(function(cat){
+      var label = pfLabel(cat);
+      var chip = document.createElement('label');
+      chip.className = 'order-chip';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = label;
+      cb.className = 'order-item-cb';
+      chip.appendChild(cb);
+      chip.appendChild(document.createTextNode(label));
+      fItems.appendChild(chip);
+    });
+  }
+  renderOrderItems();
 
   function buildText(){
     var items = Array.prototype.slice.call(document.querySelectorAll('.order-item-cb:checked')).map(function(c){ return c.value; });
@@ -783,6 +874,14 @@
     }catch(e){
       alert('복사에 실패했습니다. 직접 드래그하여 복사해 주세요.');
     }
+  });
+
+  loadTextSheet().then(function(){
+    applyI18N();
+    renderTabs();
+    renderGrid();
+    renderNotices();
+    renderOrderItems();
   });
 
 })();
