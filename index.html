@@ -232,7 +232,7 @@
   .topnav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
   .topnav-inner { max-width:1120px; margin:0 auto; padding:0 20px; height:56px; display:flex; align-items:center; gap:6px; }
   .topnav-logo { font-size:16px; font-weight:900; color:var(--pink-deep); margin-right:auto; }
-  .topnav-link { font-size:12px; font-weight:800; color:var(--text-soft); padding:8px 12px; border-radius:999px; white-space:nowrap; }
+  .topnav-link { font-size:12px; font-weight:800; color:var(--text-soft); padding:8px 12px; border-radius:999px; white-space:nowrap; border:none; background:none; cursor:pointer; }
   .topnav-link:hover { color:var(--pink-deep); background:var(--pink-soft); }
   .topnav-links { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
   .topnav-links::-webkit-scrollbar{ display:none; }
@@ -244,13 +244,13 @@
   <div class="topnav-inner">
     <div class="topnav-logo" data-i18n="nav_logo">CANA 카나</div>
     <div class="topnav-links">
-      <a class="topnav-link" href="#greet" data-i18n="nav_greet">인사말</a>
-      <a class="topnav-link" href="#event" data-i18n="nav_event">EVENT</a>
-      <a class="topnav-link" href="#portfolio" data-i18n="nav_portfolio">포트폴리오</a>
-      <a class="topnav-link" href="#schedule" data-i18n="nav_schedule">작업일정</a>
-      <a class="topnav-link" href="#notice" data-i18n="nav_notice">공지사항</a>
-      <a class="topnav-link" href="#package" data-i18n="nav_package">패키지</a>
-      <a class="topnav-link" href="#order" data-i18n="nav_order">신청양식</a>
+      <button type="button" class="topnav-link" data-scroll-to="greet" data-i18n="nav_greet">인사말</button>
+      <button type="button" class="topnav-link" data-scroll-to="event" data-i18n="nav_event">EVENT</button>
+      <button type="button" class="topnav-link" data-scroll-to="portfolio" data-i18n="nav_portfolio">포트폴리오</button>
+      <button type="button" class="topnav-link" data-scroll-to="schedule" data-i18n="nav_schedule">작업일정</button>
+      <button type="button" class="topnav-link" data-scroll-to="notice" data-i18n="nav_notice">공지사항</button>
+      <button type="button" class="topnav-link" data-scroll-to="package" data-i18n="nav_package">패키지</button>
+      <button type="button" class="topnav-link" data-scroll-to="order" data-i18n="nav_order">신청양식</button>
     </div>
   </div>
 </div>
@@ -271,9 +271,9 @@
       </div>
       <p class="hero-desc" data-i18n="hero_desc">안녕하세요 카나CANA 입니다.<br>캐릭터의 개성과 채널분위기를 최대한 살릴 맞춤 디자인을 제작합니다.<br>메뉴에 없는 것도 편하게 문의 주시면 됩니다♡</p>
       <div class="hero-btns">
-        <a class="hero-btn primary" href="#order" data-i18n="hero_btn1">문의양식</a>
-        <a class="hero-btn" href="#schedule" data-i18n="hero_btn2">작업일정</a>
-        <a class="hero-btn" href="#portfolio" data-i18n="hero_btn3">포트폴리오</a>
+        <button type="button" class="hero-btn primary" data-scroll-to="order" data-i18n="hero_btn1">문의양식</button>
+        <button type="button" class="hero-btn" data-scroll-to="schedule" data-i18n="hero_btn2">작업일정</button>
+        <button type="button" class="hero-btn" data-scroll-to="portfolio" data-i18n="hero_btn3">포트폴리오</button>
       </div>
     </div>
   </div>
@@ -492,6 +492,32 @@
 
 <script>
 (function(){
+
+  /* ---------- 섹션 이동 (아트머그 iframe 임베드 대응) ----------
+   * 이 페이지는 아트머그 상세페이지에서 <iframe scrolling="no">로 삽입되어
+   * iframe 자체는 스크롤되지 않고, 부모 페이지가 iframe 전체를 감싸며 스크롤됩니다.
+   * 그래서 내부 <a href="#section"> 앵커 이동은 동작하지 않고,
+   * 부모 페이지에게 postMessage로 "이 위치로 스크롤해줘" 라고 요청해야 합니다.
+   * (부모의 onload 스크립트가 window.addEventListener('message', ...)로 이 메시지를 받아 처리합니다)
+   */
+  var TOPNAV_HEIGHT = 56;
+  function scrollToSection(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var top = el.getBoundingClientRect().top + window.pageYOffset;
+    if(window.parent && window.parent !== window){
+      try{
+        window.parent.postMessage({ type:'scrollToSection', top: top, offset: TOPNAV_HEIGHT }, '*');
+        return;
+      }catch(e){}
+    }
+    window.scrollTo({ top: top - TOPNAV_HEIGHT, behavior:'smooth' });
+  }
+  document.querySelectorAll('[data-scroll-to]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      scrollToSection(btn.getAttribute('data-scroll-to'));
+    });
+  });
 
   /* ---------- 구글 스프레드시트 텍스트 연동 (전체 텍스트 CMS) ----------
    * 구글 시트 컬럼: key, value (1행은 헤더)
