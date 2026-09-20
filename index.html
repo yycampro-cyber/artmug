@@ -590,7 +590,7 @@
   var PF_CATS = [
     { key:'rt', label:'RT 포스터', folder:'images/portfolio/RT', files:['01','02','03','04','05','06','08','09'], group:1 },
     { key:'ppt', label:'PPT', folder:'images/portfolio/PPT', count:5, wide:true, group:1 },
-    { key:'promo', label:'일반 홍보 포스터', folder:'images/portfolio/홍보포스터', count:9, group:1 },
+    { key:'promo', label:'일반 홍보 포스터', folder:'images/portfolio/홍보포스터', files:['01','02','03','04','05','06','08','09'], group:1 },
     { key:'life4_big', label:'인생네컷 대형', folder:'images/portfolio/인생네컷대형', count:12, group:1 },
     { key:'life4_small', label:'인생네컷 소형', folder:'images/portfolio/인생네컷소형', count:6, group:1 },
     { key:'cheki', label:'체키틀', folder:null, group:1 },
@@ -674,14 +674,20 @@
   var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv&gid=' + SHEET_GID;
   var sheetOverrides = {};
 
+  var STATUS_ALIASES = {
+    'open':'open', '예약가능':'open', '가능':'open',
+    'full':'full', '예약마감':'full', '마감':'full',
+    'off':'off', '휴무':'off', '휴일':'off'
+  };
   function parseCSV(text){
     var lines = text.trim().split(/\r?\n/);
     lines.shift(); // header
     lines.forEach(function(line){
       var cols = line.split(',');
       var date = (cols[0] || '').trim();
-      var status = (cols[1] || '').trim().toLowerCase();
-      if(date && ['open','full','off'].indexOf(status) !== -1){
+      var raw = (cols[1] || '').trim().toLowerCase();
+      var status = STATUS_ALIASES[raw];
+      if(date && status){
         sheetOverrides[date] = status;
       }
     });
